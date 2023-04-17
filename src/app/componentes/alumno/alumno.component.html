@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="text-left mb-3 mt-3">
+    <button class="btn btn-info shadow" type="button" [routerLink]="['/alumnos/form']">Nuevo alumno</button>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      Listado de alumnos
+    </div>
+    <div class="card-body">
+      <div class="card-title">Alumnos</div>
+      <div class="table-responsive">
+        <table class="table table-bordered" id="myTable">
+          <thead>
+            <th>ID</th>
+            <th>NUMERO DE CONTROL</th>
+            <th>NOMBRE</th>
+            <th>CORREO ELECTROICO</th>
+            <th>FECHA DE REGISTRO</th>
+            <th>Acciones</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let alumno of alumnos">
+              <td>{{alumno.idAlumno}}</td>
+              <td>{{alumno.numeroControl}}</td>
+              <td>{{alumno.nombre}}</td>
+              <td>{{alumno.email}}</td>
+              <td>{{alumno.fechaRegistro}}</td>
+              <td>
+                <div class="p-1 actions"id="columnas2">
+                        <button type="button" class="btn btn-primary me-2" [routerLink]="['/alumnos/form', alumno]">
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarAlumno(alumno.idAlumno)">
+                          Eliminar
+                        </button>
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

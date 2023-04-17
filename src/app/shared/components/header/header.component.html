@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Seguridad App</span>
+    <div class="d-flex">
+      <button type="button" class="btn btn-light" disabled *ngIf="data!=null">
+        {{data!=null?data.nombre:''}}
+      </button>
+      <button type="button" class="btn btn-light" (click)="onLogout()" *ngIf="data!=null">
+        Cerrar Sesión</button>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,7 @@
+.color{
+  background-color: black;
+}
+
+a, p{
+  color: white !important;
+}

@@ -1,0 +1,82 @@
+<h1 style="margin: 12px;">Alumnos</h1>
+<div align="end">
+  <button class="btn btn-primary" (click)="onOpenModal({})">Agregar</button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="text-center">No. Control</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Correo</th>
+        <th class="text-center">Fecha Registro</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of alumnos">
+        <td>{{ alumno. numeroControl }}</td>
+        <td>{{ alumno.nombre }}</td>
+        <td>{{ alumno.email }}</td>
+        <td>{{ alumno.fechaRegistro | date: 'dd/MM/yyyy' }}</td>
+        <td class="text-center">
+          <button class="btn btn-outline-info" (click)="onOpenModal (alumno)">Editar</button>
+          <button class="btn btn-outline-danger" (click)="onDelete(alumno.idAlumno)">Eliminar</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="modalAlumno" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Alumnos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="alumnoForm" (ngSubmit)="onSave()">
+          <div class="form-floating mb-3">
+            <input type="text"
+              [className]="baseForm.isValidField(alumnoForm.get('nombre')) ? 'form-control is-invalid': 'form-control'"
+              placeholder="" formControlName="nombre">
+            <label>Nombre</label>
+            <div class="invalid-feedback">
+              {{ baseForm.getErrorMessage (alumnoForm.get('nombre')) }}
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email"
+              [className]="baseForm.isValidField(alumnoForm.get('email')) ?'form-control is-invalid': 'form-control'"
+              placeholder="" formControlName="email">
+            <label>Correo</label>
+            <div class="invalid-feedback">
+              {{ baseForm.getErrorMessage (alumnoForm.get('email')) }}
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number"
+              [className]="baseForm.isValidField(alumnoForm.get('numeroControl')) ?'form-control is-invalid': 'form-control'"
+              placeholder="" formControlName="numeroControl">
+            <label>Número Control</label>
+            <div class="invalid-feedback">
+              {{ baseForm.getErrorMessage (alumnoForm.get('numeroControl')) }}
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="this.alumnoForm.invalid">{{titleButton}}</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
